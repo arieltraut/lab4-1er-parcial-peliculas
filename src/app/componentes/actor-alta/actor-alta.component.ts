@@ -32,6 +32,7 @@ export class ActorAltaComponent implements OnInit {
 
   Agregar() {
     if (this.ValidarCampos() !== false) {
+      this.actor.activo = true;
       this.actorService.CrearUno(JSON.parse( JSON.stringify(this.actor)))
       .then();
       alert('Se agregó el actor correctamente!');

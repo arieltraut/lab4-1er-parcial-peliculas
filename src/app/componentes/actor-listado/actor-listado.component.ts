@@ -41,7 +41,8 @@ export class ActorListadoComponent implements OnInit {
 
   public TraerActores() {
     this.actorServ.TraerTodos().then(
-      data => {this.listadoActores = data.filter(actor => actor.activo);
+      data => {this.listadoActores = data.filter(actor => actor.activo)
+              .sort((a, b) => a.apellido.localeCompare(b.apellido));
                console.log(data);
     });
   }

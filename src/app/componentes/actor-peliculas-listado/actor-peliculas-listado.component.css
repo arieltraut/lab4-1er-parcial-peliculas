@@ -1,4 +1,6 @@
 .img-fluid {
   max-width: 100%;
   height: -webkit-fill-available;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }

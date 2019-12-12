@@ -24,6 +24,7 @@ export class ActorModificarComponent implements OnInit {
   public fotoEstrellaError: boolean;
 
   selectedFile: File = null;
+  imgURL: any;
 
   constructor(private actorService: ActorService,
               private storage: AngularFireStorage,
@@ -106,12 +107,20 @@ export class ActorModificarComponent implements OnInit {
       alert('Solo se pueden seleccionar imagenes.');
       (document.getElementById('foto') as HTMLInputElement).value = null;
       this.selectedFile = null;
+      this.imgURL = null;
       return;
     }
 
     this.selectedFile = files[0]; // guarda archivo para subirlo en startUpload()
 
+    const reader = new FileReader();
+    // this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (event) => {
+      this.imgURL = reader.result;
+    };
   }
+
 
 
   StartUpload() { // (event: FileList)

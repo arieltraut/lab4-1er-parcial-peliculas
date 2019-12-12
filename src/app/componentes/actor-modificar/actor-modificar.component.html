@@ -26,13 +26,28 @@
                         <input class="form-control" type="date" placeholder="Ingrese una fecha de nacimiento.." [(ngModel)]="actor.fechaDeNacimiento" name="fechaDeNacimiento">
                         <label *ngIf="fechaDeNacimientoError" class="form-text text-danger">Falta ingresar la fecha de nacimiento</label>
                     </div>
-                    <div class="form-group">
-                        <label>Foto de Perfil</label>
-                        <input class="form-control" #file type="file" placeholder="Seleccione archivo de imagen..." name="fotoEstrella" id="foto" accept='image/*' (change)="Preview(file.files)">
-                        <label *ngIf="fotoEstrellaError" class="form-text text-danger">Falta seleccionar archivo</label>
-                        <!-- <label *ngIf="selectedFile == null && !fotoEstrellaError" class="form-text text-danger">{{mensaje}}</label> -->
-                    </div>
+                    <div class="card" style="margin-top: 2%; height: 161px;">
+                        <div class="row no-gutters">
+                            <div class="col-auto">
+                                <img [src]="imgURL ? imgURL : 'actor.fotoEstrella'" class="img-fluid" alt="">
 
+                                <!-- <img *ngIf="imgURL" src="imgURL" class="img-fluid" alt=""> -->
+                                <img *ngIf="!actor.fotoEstrella && !imgURL" src="//placehold.it/200" class="img-fluid" alt="">
+                                <img *ngIf="actor.fotoEstrella && !imgURL" src="{{actor.fotoEstrella}}" class="img-fluid" alt="">
+                            </div>
+                            <div class="col" style="padding: 2%">
+                                <div class="card-block px-2">
+                                  <div class="form-group">
+                                      <label>Foto de Perfil</label>
+                                      <input class="form-control" #file type="file" placeholder="Seleccione archivo de imagen..." name="fotoEstrella" id="foto" accept='image/*' (change)="Preview(file.files)">
+                                      <label *ngIf="fotoEstrellaError" class="form-text text-danger">Falta seleccionar archivo</label>
+                                      <!-- <label *ngIf="selectedFile == null && !fotoEstrellaError" class="form-text text-danger">{{mensaje}}</label> -->
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <button id="btnModif" type="button" style="margin-right:1%;" class="btn btn-success pull-right" (click)="StartUpload()"> Modificar </button>
 
                     <button id="btnLimpiar" type="button" class="btn btn-info" routerLink="/actor/listado"> Cancelar </button> <!--(click)="seModifico.emit(false); verForm = false"-->
