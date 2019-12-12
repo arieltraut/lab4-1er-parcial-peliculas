@@ -13,8 +13,8 @@
         <td>{{actor.nacionalidad}}</td>
         <td>{{actor.fechaDeNacimiento}}</td>
         <td><img class="imagenDeMenu"  src="{{actor.fotoEstrella}}" style="width: 70px"></td>
-        <td>
-          <app-btn-borrar [objetoABorrar]="actor" [queBorro]="'actor'" (borrado)="RecibirYEmitirBorrado($event)"></app-btn-borrar>
+        <td *ngIf="usuario.tipo == 'administrador'">
+          <app-btn-borrar  [objetoABorrar]="actor" [queBorro]="'actor'" (borrado)="RecibirYEmitirBorrado($event)"></app-btn-borrar>
         </td>
         <td>
           <button id="btnMofificar" type="button" class="btn btn-primary pull-right" (click)="EmitirModificado(actor)">Modificar</button>

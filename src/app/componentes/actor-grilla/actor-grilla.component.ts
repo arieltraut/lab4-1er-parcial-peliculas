@@ -12,10 +12,12 @@ export class ActorGrillaComponent implements OnInit {
   @Output() borrado: EventEmitter<any> = new EventEmitter<any>();
   @Output() modificado: EventEmitter<any> = new EventEmitter<any>();
 
+  usuario;
 
   constructor() { }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem('user-bd'));
   }
 
 
