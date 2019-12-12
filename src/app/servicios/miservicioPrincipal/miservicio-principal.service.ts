@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class MiservicioPrincipalService<T> {
+export class MiservicioPrincipalService {
 
   private urlBase = 'http://localhost/lab4/';
 

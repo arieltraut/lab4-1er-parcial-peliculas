@@ -1,26 +1,31 @@
-<body class="panel">
-  <div class="container" >
-   <div class="jumbotron" style="padding:50px; background-color: aliceblue;">
-     <form action="return true;">
 
-      <div class="container">
-        <label><b style="color: #F9AF38">Email</b></label>
-        <input type="text" placeholder="Email"  [(ngModel)]="email"  name="uname" required>
 
-        <label><b style="color: #F9AF38">Clave</b></label>
-        <input type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required>
-        <button  (click)="Loguearse()" >Ingresar</button>
 
-      </div>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Login Form -->
+      <form >
+        <h2 class="text-dark"> Iniciar sesion</h2>
+        <input type="text" id="login" class="fadeIn second mt-3" name="email" placeholder="email" [(ngModel)] = "email">
+        <input type="password" id="password" class="fadeIn third" placeholder="contraseña" name="contraseña"  [(ngModel)] = "clave">
+        <input type="button" class="myButton  mt-3" value="Ingresar" (click)="Loguearse()">
+      </form>
+
 
       <!-- Quick access -->
       <div class="mb-5 perfiles">
-        <a (click)="email = 'usuario@admin.com'; clave = '123456'"><span class="btn btn-outline-success ">Admin</span></a>
-        <a (click)="email = 'usuario@cliente.com'; clave = '654321'"><span class="btn btn-outline-primary">Cliente</span></a>
-        <a (click)="email = 'usuario@visitante.com'; clave = '13579'"><span class="btn btn-outline-danger">Visitante</span></a>
-      </div>
+          <a (click)="email = 'usuario@admin.com'; clave = '123456'"><span class="btn btn-outline-success fill">Admin</span></a>
+          <a (click)="email = 'usuario@cliente.com'; clave = '654321'"><span class="btn btn-outline-primary" fill>Cliente</span></a>
+          <a (click)="email = 'usuario@visitante.com'; clave = '123456'"><span class="btn btn-outline-danger fill">Visitante</span></a>
+        </div>
 
-     </form>
-   </div>
- </div>
- </body>
+
+
+      <!-- <div id="formFooter">
+        <a class="underlineHover" routerLink="/registro">Registrarse</a>
+      </div> -->
+
+    </div>
+  </div>

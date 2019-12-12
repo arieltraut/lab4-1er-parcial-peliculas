@@ -22,7 +22,7 @@ export class UserLoginComponent implements OnInit {
     this.authService.LoginUsuario(this.email, this.clave).then((res) => {
       const entro = false;
 
-      this.router.navigate(['bienvenido']);
+      // this.router.navigate(['bienvenido']);
      }).catch(error => {
           alert('Error');
       });

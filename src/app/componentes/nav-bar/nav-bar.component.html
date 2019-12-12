@@ -24,9 +24,9 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <!--<app-header-mail></app-header-mail> -->
-                {{email}}
-                <a *ngIf="email" class="nav-link text-info pl-3 bla"
-                  (click)="authService.LogoutUsuario()">Cerrar sesion</a>
+                  {{usuario.email}}
+                  <a class="nav-link text-info pl-3 bla"
+                    (click)="usuario = null; authService.LogoutUsuario()">Cerrar sesion</a>
             </form>
         </div>
     </nav>
