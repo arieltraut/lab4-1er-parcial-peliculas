@@ -7,25 +7,25 @@ import { Pelicula } from 'src/app/clases/pelicula';
 })
 export class PeliculaService {
 
-  constructor(private httpClient: MiservicioPrincipalService<Pelicula>) {}
+  constructor(private miServicio: MiservicioPrincipalService<Pelicula>) {}
 
-  //  public TraerUno(id: number): {
-  //   return this.httpClient.GetHttp('actores/', id);
-  // }
+   public TraerUno(id: number) {
+    return this.miServicio.TraerUno('peliculas', id);
+  }
 
   public TraerTodos() {
-    return this.httpClient.HttpGetAll('pelicula/listar/');
+    return this.miServicio.TraerTodos2('peliculas');
   }
 
-  public CrearUno(prod: Pelicula) {
-    return this.httpClient.PostHttp('pelicula/alta/', prod);
+  public CrearUno(peli: Pelicula) {
+    return this.miServicio.AgregarUno(peli, 'peliculas');
   }
 
-  public ModificarUno(prod: Pelicula) {
-    return this.httpClient.PostHttp('pelicula/modificar/', prod);
+  public ModificarUno(peli: Pelicula) {
+    return this.miServicio.ModificarUno(peli, 'peliculas');
   }
 
-  public BorrarUno(id: number) {
-    return this.httpClient.DeleteHttp('pelicula/eliminar/', id);
+  public BorrarUno(id: string) {
+    return this.miServicio.BorrarUno(id, 'peliculas');
   }
 }

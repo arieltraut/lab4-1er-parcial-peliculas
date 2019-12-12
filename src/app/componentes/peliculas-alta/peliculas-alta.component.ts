@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Pelicula } from 'src/app/clases/pelicula';
 import { PeliculaService } from 'src/app/servicios/pelicula/pelicula.service';
 import { Router } from '@angular/router';
+import { Actor } from 'src/app/clases/actor';
+import { ActorService } from 'src/app/servicios/actor/actor.service';
 
 @Component({
   selector: 'app-peliculas-alta',
@@ -11,19 +13,27 @@ import { Router } from '@angular/router';
 export class PeliculasAltaComponent implements OnInit {
 
   public pelicula: Pelicula;
+  public actor: Actor;
+  listadoActores: Array<Actor>;
+
   public descError: boolean;
   public tipoError: boolean;
   public fechaDeVencError: boolean;
   public precioError: boolean;
 
-  constructor(private peliculaServ: PeliculaService, private miRouter: Router) { }
+  constructor(private peliculaServ: PeliculaService,
+              private actorServ: ActorService,
+              private miRouter: Router) { }
 
   ngOnInit() {
     this.ReestablecerTodo();
+    this.ObtenerActores();
   }
 
   ReestablecerTodo() {
+    this.actor = null;
     this.pelicula = new Pelicula();
+    this.pelicula.tipo = null;
     this.descError = false;
     this.tipoError = false;
     this.fechaDeVencError = false;
@@ -31,31 +41,32 @@ export class PeliculasAltaComponent implements OnInit {
   }
 
   Agregar() {
-    if (this.ValidarCampos() != false) {
-      this.pelicula.rutaDeFoto = '../../../assets/imagenes/default.png';
-      this.peliculaServ.CrearUno(this.pelicula)
-      .subscribe();
+    if (this.ValidarCampos() !== false) {
+      this.pelicula.estrellaPrincipal = JSON.parse( JSON.stringify(this.actor));
+      this.pelicula.rutaDeFoto = '../../../assets/blade.jpg';
+      this.peliculaServ.CrearUno(JSON.parse( JSON.stringify(this.pelicula))); // then catch
       // alert('Se agregó el pelicula correctamente!');
       this.ReestablecerTodo();
     }
   }
 
+
  ValidarCampos() {
     let result = true;
 
-    if (this.pelicula.nombre == '' || this.pelicula.nombre == undefined) {
+    if (this.pelicula.nombre === '' || this.pelicula.nombre === undefined) {
       this.descError = true;
       result = false;
     }
-    if (this.pelicula.tipo == 'null' || this.pelicula.tipo == undefined) {
+    if (this.pelicula.tipo === 'null' || this.pelicula.tipo === undefined) {
       this.tipoError = true;
       result = false;
     }
-    if (this.pelicula.fechaDeEstreno == null || this.pelicula.fechaDeEstreno == undefined) {
+    if (this.pelicula.fechaDeEstreno == null || this.pelicula.fechaDeEstreno === undefined) {
       this.fechaDeVencError = true;
       result = false;
     }
-    if (this.pelicula.cantDePublico == null || this.pelicula.cantDePublico == undefined) {
+    if (this.pelicula.cantDePublico == null || this.pelicula.cantDePublico === undefined) {
       this.precioError = true;
       result = false;
     }
@@ -64,6 +75,13 @@ export class PeliculasAltaComponent implements OnInit {
 
   VolverAPeliculasClick(): void {
     this.miRouter.navigate(['/peliculas']);
+  }
+
+  ObtenerActores() {
+    this.actorServ.TraerTodos()
+    .then(x => {
+      this.listadoActores = x;
+    });
   }
 
 

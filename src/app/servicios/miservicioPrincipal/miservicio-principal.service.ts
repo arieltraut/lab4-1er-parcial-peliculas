@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Producto } from 'src/app/clases/producto';
+import { AngularFirestore, } from '@angular/fire/firestore';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,37 +16,50 @@ export class MiservicioPrincipalService<T> {
 
   private urlBase = 'http://localhost/lab4/';
 
-  constructor( public http: HttpClient ) {}
+  constructor( private afs: AngularFirestore ) {}
 
-  // let blabla = {"descripcion": "jugo"};
 
-  public HttpGetAll(metodo: string): Observable<any[]> { // Observable<T[]>
-    return this.http.get<T[]>( this.urlBase + metodo )
-    .pipe( res => res );
+  TraerTodos(collection): Observable<any[]> {
+    return this.afs.collection<any>(collection).valueChanges()
+    .pipe (res => res );
   }
 
 
-  public DeleteHttp(url: string, id: number) {
-    // console.log(this.urlBase + url + id);
-    return this.http.delete(this.urlBase + url + id)
-    .pipe( res => res );
-    // .toPromise().catch(this.ErrorHandler);
+  TraerTodos2(collection) {  // no trae a tiempo, reemplazada por traertodos
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection(collection).valueChanges().subscribe(snapshots => {
+        resolve(snapshots);
+      });
+    });
   }
 
-  public PostHttp(url: string, object: T) {
-    console.log(this.urlBase + url);
-    console.log(object);
-    return this.http.post<T>(this.urlBase + url, object, httpOptions)
-     .pipe( res => res );
+  TraerUno(collection, id) {
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection(`${collection}`).doc(id).valueChanges().subscribe(snapshots => {
+        resolve(snapshots);
+      });
+    });
   }
 
-  // public PutHttp(url: string, object: T) {
-  //   console.log(this.urlBase + url);
-  //   console.log(object);
-  //   return this.http.put<T>(this.urlBase + url + object, httpOptions);
-  //   // .toPromise().catch(this.ErrorHandler);
-  // }
+  AgregarUno(objeto: any, collection: string) {
+    const id = this.afs.createId();
+    objeto.id = id;
+    return this.afs.collection(collection).doc(id).set(objeto);
 
+    // this.afs.collection(collection).add(objeto);
+    // .doc().set(objeto);
+  }
+
+  ModificarUno(objeto: any, collection: string) {
+    const id = objeto.id;
+    const objetoDoc = this.afs.doc<any>(`${collection}/${id}`);
+    return objetoDoc.update(objeto);
+  }
+
+  BorrarUno(id: any, collection: string) {
+    const objetoDoc = this.afs.collection(`${collection}`).doc(id);
+    return objetoDoc.delete();
+  }
 
 
 }

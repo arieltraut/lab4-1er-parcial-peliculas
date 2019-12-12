@@ -7,25 +7,25 @@ import { MiservicioPrincipalService } from '../miservicioPrincipal/miservicio-pr
 })
 export class ActorService {
 
-  constructor(private httpClient: MiservicioPrincipalService<Actor>) {}
+  constructor(private miServicio: MiservicioPrincipalService<Actor>) {}
 
-  //  public TraerUno(id: number): {
-  //   return this.httpClient.GetHttp('actores/', id);
-  // }
+  public TraerUno(id: number) {
+    return this.miServicio.TraerUno('actores', id);
+  }
 
   public TraerTodos() {
-    return this.httpClient.HttpGetAll('actor/listar/');
+    return this.miServicio.TraerTodos2('actores');
+  }
+
+  public TraerTodos2() {
+    return this.miServicio.TraerTodos('actores');
   }
 
   public CrearUno(actor: Actor) {
-    return this.httpClient.PostHttp('actor/alta/', actor);
+    return this.miServicio.AgregarUno(actor, 'actores');
   }
 
-  // public ModificarUno(prod: Pelicula) {
-  //   return this.httpClient.PostHttp('pelicula/modificar/', prod);
-  // }
-
-  // public BorrarUno(id: number) {
-  //   return this.httpClient.DeleteHttp('pelicula/eliminar/', id);
-  // }
+  public ModificarUno(actor: Actor) {
+    return this.miServicio.ModificarUno(actor, 'actores');
+  }
 }

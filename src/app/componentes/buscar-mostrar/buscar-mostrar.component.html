@@ -1,14 +1,37 @@
-<div class="row">
-    <div class="col-md-8">
-    <h2>Búsquedas</h2>
-</div>
-<div class="col-md-4">
-    <app-buscar-input (resultadoBuscar)="CargarPeliculas($event)"></app-buscar-input >
-</div>
-</div>
-    <div class="row">
-    <div class="col-md-12">
-        <hr>
-        <app-grilla [listadoPeliculas]="peliculasFiltrados"></app-grilla>
-    </div>
+<app-nav-bar></app-nav-bar>
+
+
+
+<!-- Main -->
+<div class="container">
+  <div class="row">
+      <div class="col">
+      <h2>Búsquedas</h2>
+  </div>
+  <div class="col">
+      <app-buscar-input (resultadoBuscar)="BuscarPeliculas($event)"></app-buscar-input >
+  </div>
+  </div>
+      <div class="row">
+      <div class="col-md-10">
+          <br>
+          <app-grilla [listadoPeliculas]="peliculas"></app-grilla>
+
+          <!-- Alert ERROR-->
+          <div *ngIf="noEncontro" >
+            <div class="alert alert-danger" role="alert">
+              No se encontraron peliculas!
+            </div>
+              <br>
+            <button id="btnAltaRoute" type="button" style="margin-right:1%;"
+            class="btn btn-success pull-right" (click)="CargarPeliculas()"> Volver </button>
+          </div>
+
+          <div *ngIf="volverBtn">
+            <button id="btnAltaRoute" type="button" style="margin-right:1%;"
+            class="btn btn-success pull-right" (click)="CargarPeliculas()"> Volver </button>
+          </div>
+
+      </div>
+  </div>
 </div>

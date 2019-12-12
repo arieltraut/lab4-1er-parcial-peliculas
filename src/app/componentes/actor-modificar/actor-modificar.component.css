@@ -1,0 +1,24 @@
+/* form {
+  padding: 10px;
+}
+
+
+
+.container {
+  position: fixed;
+  width: 35%;
+  border-radius: 5px;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 20px auto;
+  left: 32%;
+  top: 130px;
+  animation-name: aparecer;
+  animation-duration: 0.4s;
+}
+
+@keyframes aparecer {
+  from{opacity: 0}
+  to{opacity: 1}
+} */

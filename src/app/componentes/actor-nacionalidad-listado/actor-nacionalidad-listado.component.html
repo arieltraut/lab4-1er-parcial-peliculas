@@ -1,0 +1,17 @@
+<table class="table table-bordered table-striped table-hover">
+  <!-- style="width:50%"> -->
+  <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Nacionalidad</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Foto</th>
+  </tr>
+  <tr *ngFor="let actor of listadoActores" >
+      <td>{{actor.nombre}}</td>
+      <td>{{actor.apellido}}</td>
+      <td>{{actor.nacionalidad}}</td>
+      <td>{{actor.fechaDeNacimiento}}</td>
+      <td><img class="imagenDeMenu"  src="{{actor.fotoEstrella}}" style="width: 70px"></td>
+  </tr>
+</table>

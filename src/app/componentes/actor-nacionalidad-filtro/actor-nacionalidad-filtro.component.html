@@ -1,0 +1,4 @@
+<select name="act" id="act" class="form-control mr-sm-2 ok" (change)="cambioSelect()" [(ngModel)]="this.nacionalidad">
+    <option value="todos" selected>Todos</option>
+    <option *ngFor="let nacionalidad of nacionalidades" [value]="nacionalidad" >{{nacionalidad}}</option>
+  </select>

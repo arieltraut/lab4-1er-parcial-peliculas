@@ -1,0 +1,33 @@
+<div class="mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" routerLink="/bienvenido">App</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a routerLinkActive="active" class="nav-link" routerLink="/peliculas" >Peliculas</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLinkActive="active" class="nav-link" routerLink="/actor/listado" >Actores</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLinkActive="active" class="nav-link" routerLink="/actor/peliculas" >Actores/Peliculas</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLinkActive="active" class="nav-link" routerLink="/actor/nexo" >Nacionalidades</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLinkActive="active" class="nav-link" routerLink="/busqueda" >Buscar</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <!--<app-header-mail></app-header-mail> -->
+                {{email}}
+                <a *ngIf="email" class="nav-link text-info pl-3 bla"
+                  (click)="authService.LogoutUsuario()">Cerrar sesion</a>
+            </form>
+        </div>
+    </nav>
+  </div>

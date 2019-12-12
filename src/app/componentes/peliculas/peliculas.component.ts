@@ -16,17 +16,14 @@ export class PeliculasComponent implements OnInit {
               private miRouter: Router) { }
 
   ngOnInit() {
-    this.peliculaServ.TraerTodos()
-    .subscribe(
-      data => {this.peliculas = data;
-      // tslint:disable-next-line: no-console
-               console.info(data);
-
+    this.peliculaServ.TraerTodos().then(
+      data => {this.peliculas = data.sort((a, b) => a.nombre.localeCompare(b.nombre));
+               console.log(data);
     });
   }
 
-AgregarPeliculaClick(): void {
-  this.miRouter.navigate(['/peliculas/alta']);
-}
+  AgregarPeliculaClick(): void {
+    this.miRouter.navigate(['/peliculas/alta']);
+  }
 
 }

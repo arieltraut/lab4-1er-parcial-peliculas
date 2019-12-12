@@ -1,0 +1,26 @@
+<body class="panel">
+  <div class="container" >
+   <div class="jumbotron" style="padding:50px; background-color: aliceblue;">
+     <form action="return true;">
+
+      <div class="container">
+        <label><b style="color: #F9AF38">Email</b></label>
+        <input type="text" placeholder="Email"  [(ngModel)]="email"  name="uname" required>
+
+        <label><b style="color: #F9AF38">Clave</b></label>
+        <input type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required>
+        <button  (click)="Loguearse()" >Ingresar</button>
+
+      </div>
+
+      <!-- Quick access -->
+      <div class="mb-5 perfiles">
+        <a (click)="email = 'usuario@admin.com'; clave = '123456'"><span class="btn btn-outline-success ">Admin</span></a>
+        <a (click)="email = 'usuario@cliente.com'; clave = '654321'"><span class="btn btn-outline-primary">Cliente</span></a>
+        <a (click)="email = 'usuario@visitante.com'; clave = '13579'"><span class="btn btn-outline-danger">Visitante</span></a>
+      </div>
+
+     </form>
+   </div>
+ </div>
+ </body>

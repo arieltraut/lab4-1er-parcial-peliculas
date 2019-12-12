@@ -31,9 +31,9 @@ export class ActorAltaComponent implements OnInit {
   }
 
   Agregar() {
-    if (this.ValidarCampos() != false) {
-      this.actorService.CrearUno(this.actor)
-      .subscribe();
+    if (this.ValidarCampos() !== false) {
+      this.actorService.CrearUno(JSON.parse( JSON.stringify(this.actor)))
+      .then();
       alert('Se agregó el actor correctamente!');
       this.ReestablecerTodo();
     }
@@ -42,19 +42,19 @@ export class ActorAltaComponent implements OnInit {
  ValidarCampos() {
     let result = true;
 
-    if (this.actor.nombre == '' || this.actor.nombre == undefined) {
+    if (this.actor.nombre === '' || this.actor.nombre === undefined) {
       this.nombreError = true;
       result = false;
     }
-    if (this.actor.apellido == '' || this.actor.apellido == undefined) {
+    if (this.actor.apellido === '' || this.actor.apellido === undefined) {
       this.apellidoError = true;
       result = false;
     }
-    if (this.actor.nacionalidad == '' || this.actor.nacionalidad == undefined) {
+    if (this.actor.nacionalidad === '' || this.actor.nacionalidad === undefined) {
       this.nacionalidadError = true;
       result = false;
     }
-    if (this.actor.fechaDeNacimiento == null || this.actor.fechaDeNacimiento == undefined) {
+    if (this.actor.fechaDeNacimiento == null || this.actor.fechaDeNacimiento === undefined) {
       this.fechaDeNacimientoError = true;
       result = false;
     }

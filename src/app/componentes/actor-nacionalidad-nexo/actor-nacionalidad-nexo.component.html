@@ -1,0 +1,25 @@
+<app-nav-bar></app-nav-bar>
+
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h2>Actores por Nacionalidad</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <app-actor-nacionalidad-filtro [actores]="listadoObservable" (nacionalidadSeleccionada)="cambioSelect($event)"></app-actor-nacionalidad-filtro>
+      </div>
+      <div class="col-8" style="margin-top: 30px">
+        <!-- <h1 *ngIf="vista == 'grilla'">Grilla Usuarios</h1> -->
+        <app-actor-nacionalidad-listado *ngIf="!filtrado" [listadoActores]="listadoActores"></app-actor-nacionalidad-listado>
+        <app-actor-nacionalidad-listado *ngIf="filtrado" [listadoActores]="listadoActoresFiltrado"></app-actor-nacionalidad-listado>
+      </div>
+    <!-- </div>
+        <div>
+        <button id="btnAltaRoute" type="button" style="margin-right:1%;" class="btn btn-success pull-right" (click)="AgregarPeliculaClick()"> Agregar </button>
+    </div> -->
+
+  </div>
+

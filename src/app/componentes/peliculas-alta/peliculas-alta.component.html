@@ -1,4 +1,4 @@
-<p>peliculas-alta works!</p>
+<app-nav-bar></app-nav-bar>
 
 <div class="container">
     <div class="row">
@@ -33,6 +33,14 @@
                   <input class="form-control" type="number" placeholder="Ingrese el publico.." [(ngModel)]="pelicula.cantDePublico" name="publico">
                   <label *ngIf="precioError" class="form-text text-danger">Falta ingresar publico</label>
               </div>
+              <div class="form-group">
+                <label>Elija el Actor</label>
+                <select class="form-control" name="actor" [(ngModel)]="actor">
+                    <option value="null" selected>Seleccione Actor</option>
+                    <option  *ngFor="let actor of listadoActores" [ngValue]="actor">{{actor.nombre}} {{actor.apellido}}</option>
+                </select>
+              <label *ngIf="tipoError" class="form-text text-danger">Falta seleccionar un actor</label>
+             </div>
 
               <button id="btnAgregar" type="button" style="margin-right:1%;" class="btn btn-success pull-right" (click)="Agregar()"> Agregar </button>
               <button id="btnLimpiar" type="reset" class="btn btn-info" (click)="ReestablecerTodo()"> Limpiar </button>

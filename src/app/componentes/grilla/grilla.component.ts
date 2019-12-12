@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Producto } from 'src/app/clases/producto';
 import { Router, NavigationExtras } from '@angular/router';
 import { Pelicula } from 'src/app/clases/pelicula';
+import { Actor } from 'src/app/clases/actor';
 
 @Component({
   selector: 'app-grilla',
@@ -12,31 +12,28 @@ export class GrillaComponent implements OnInit {
 
 
   @Input() listadoPeliculas: Array<Pelicula> = Array<Pelicula>();
-  @Input() listadoProductos: Array<Pelicula> = Array<Pelicula>();
+  @Input() actorSeleccionado: Actor;
+  @Input() filtra: false;
+
 
 
   constructor(private miRouter: Router) { }
 
   ngOnInit() {
+    // console.log('prueba');
+    // console.log(this.actorSeleccionado);
+    if (this.filtra) {
+          this.listadoPeliculas = this.listadoPeliculas
+          .filter(item => item.estrellaPrincipal.id === this.actorSeleccionado.id);
+    }
   }
 
-  public RefrescarLista( idPelicula: number ) {
+
+  public RefrescarLista( idPelicula: string ) { // evento btn borrar
     this.listadoPeliculas = this.listadoPeliculas.filter(item => item.id !== idPelicula);
   }
 
-  public IrAModificarClick(producto: Producto) {
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-          id: producto.id,
-          descripcion: producto.descripcion,
-          tipo: producto.tipo,
-          fechaDeVencimiento: producto.fechaDeVencimiento,
-          precio: producto.precio,
-          rutaDeFoto: producto.rutaDeFoto
-      }
-    };
-    this.miRouter.navigate(['/productos/modificar'], navigationExtras);
-  }
+
 
 
 }

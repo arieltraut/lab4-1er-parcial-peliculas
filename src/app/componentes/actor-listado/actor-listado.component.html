@@ -1,1 +1,41 @@
-<p>actor-listado works!</p>
+<app-nav-bar></app-nav-bar>
+
+
+
+<!-- <div class="row">
+    <div class="col-md-12">
+        <h1>Lista de Estrellas:</h1> -->
+        <!-- <button (click)="altaEstr = true" *ngIf="logeado">Alta Estrella</button> -->
+        <!-- <button routerLink="/login" *ngIf="!logeado">Alta Estrella</button> -->
+        <!-- <app-actor-alta (cerrarAltaEstr)="altaEstr = false" [estrellas]="estrellas" *ngIf="altaEstr"></app-actor-alta> -->
+    <!-- </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+      <div class="col">
+        <h2>Actores</h2>
+      </div>
+      <div *ngIf="mostrarListado" class="col">
+        <button id="btnAltaRoute" type="button" style="margin-right:1%;" class="btn btn-outline-success pull-right" routerLink="/actor/alta"> Agregar </button>
+      </div>
+  </div>
+  <br>
+
+  <div *ngIf="mostrarListado" class="row">
+    <div class="col-10">
+        <app-actor-grilla [listadoActores]="listadoActores" (borrado)="MostrarBorradoYActualizarLista($event)" (modificado)="IrAModificarClick($event)"></app-actor-grilla>
+    </div>
+  </div>
+
+  <div *ngIf="!mostrarListado" class="row">
+    <div class="col-8">
+        <app-actor-detalle-borrado [actor]="actorBorrado"></app-actor-detalle-borrado>
+        <button id="btnAltaRoute" type="button" style="margin-top:3%;" class="btn btn-success pull-right" (click)="mostrarListado = true" > Volver </button>
+    </div>
+  </div>
+
+</div>
+
+
+
